@@ -34,7 +34,6 @@ BANNER = """
 def main() -> None:
     """Main entry point for the script."""
     print(BANNER)
-    print('\n' * 2)
 
     # Create the projects dir and its parent directories
     os.makedirs(PROJECT_DIR, exist_ok=True)
@@ -47,7 +46,7 @@ def main() -> None:
     for project in projects:
         # Create the project directory
         project_dir = os.path.join(PROJECT_DIR, project)
-        print(f'\tSetting up Day #{project[3:]}...', end='')
+        print(f' Setting up Day #{project[3:]}...', end='')
         print(' ' * (max_len - len(project)), end='')
         os.makedirs(project_dir, exist_ok=True)
 
@@ -59,7 +58,7 @@ def main() -> None:
                     script.write(template.read())
         print(' OK')
 
-    print('All Done! Merry Coding! :)')
+    print('\nAll Done! Merry Coding! :)')
 
 
 if __name__ == '__main__':
