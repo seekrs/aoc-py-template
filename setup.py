@@ -36,7 +36,7 @@ BANNER = """
 
 def main() -> None:
     """Main entry point for the script."""
-    first_run = os.path.isfile(HASH_FILE)
+    first_run = not os.path.isfile(HASH_FILE)
     hash_value = None
     if not first_run:
         with open(HASH_FILE, 'r') as hash_file:
