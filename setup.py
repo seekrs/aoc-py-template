@@ -63,16 +63,18 @@ def main() -> None:
         os.makedirs(project_dir, exist_ok=True)
 
         # Ensure template script is copied
-        template_script = os.path.join(project_dir, "main.py")
-        if hash_value and os.path.isfile(template_script):
-            with open(template_script, 'r') as script:
+        target_main = os.path.join(project_dir, "main.py")
+        if hash_value and os.path.isfile(target_main):
+            with open(target_main, 'r') as script:
                 # Check if the template script has been modified
                 if hash_value != hashlib.md5(script.read().encode()).hexdigest():
                     print(' SKIPPING')
                     continue
-        if not os.path.isfile(template_script):
+                # The hash is the same, we can delete it and copy it back
+                os.remove(target_main)
+        if not os.path.isfile(target_main):
             with open(TEMPLATE_SCRIPT, 'r') as template:
-                with open(template_script, 'w') as script:
+                with open(target_main, 'w') as script:
                     script.write(template.read())
         print(' OK')
     
