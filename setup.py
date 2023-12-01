@@ -7,11 +7,14 @@ Author: @kiroussa
 URL: https://github.com/27network/aoc-toolkit
 """
 
+import hashlib
 import os
 import sys
 
 PROJECT_DIR = 'projects'
 TEMPLATE_SCRIPT = 'template.py'
+HASH_FILE = '.last_setup'
+
 BANNER = """
 :::'###::::'########::'##::::'##:'########:'##::: ##:'########:::::'#######::'########:
 ::'## ##::: ##.... ##: ##:::: ##: ##.....:: ###:: ##:... ##..:::::'##.... ##: ##.....::
@@ -33,7 +36,13 @@ BANNER = """
 
 def main() -> None:
     """Main entry point for the script."""
-    print(BANNER)
+    first_run = !os.path.isfile(HASH_FILE)
+    hash_value = None
+    if not first_run:
+        with open(HASH_FILE, 'r') as hash_file:
+            hash_value = hash_file.read()
+    else:
+        print(BANNER)
 
     # Create the projects dir and its parent directories
     os.makedirs(PROJECT_DIR, exist_ok=True)
@@ -46,17 +55,32 @@ def main() -> None:
     for project in projects:
         # Create the project directory
         project_dir = os.path.join(PROJECT_DIR, project)
-        print(f' Setting up Day #{project[3:]}...', end='')
+        print(' ', end='')
+        if not first_run:
+            print('Re-', end='')
+        print(f'Setting up Day #{project[3:]}...', end='')
         print(' ' * (max_len - len(project)), end='')
         os.makedirs(project_dir, exist_ok=True)
 
         # Ensure template script is copied
         template_script = os.path.join(project_dir, "main.py")
+        if hash_value and os.path.isfile(template_script):
+            with open(template_script, 'r') as script:
+                # Check if the template script has been modified
+                if hash_value != hashlib.md5(script.read().encode()).hexdigest():
+                    print(' SKIPPING', end='')
+                    continue
         if not os.path.isfile(template_script):
             with open(TEMPLATE_SCRIPT, 'r') as template:
                 with open(template_script, 'w') as script:
                     script.write(template.read())
         print(' OK')
+    
+    # Create the hash file
+    with open(HASH_FILE, 'w') as hash_file:
+        with open(TEMPLATE_SCRIPT, 'r') as template:
+            # Hash the template script
+            hash_file.write(hashlib.md5(template.read().encode()).hexdigest())
 
     print('\nAll Done! Merry Coding! :)')
 
