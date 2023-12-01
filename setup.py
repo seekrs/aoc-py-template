@@ -36,7 +36,7 @@ BANNER = """
 
 def main() -> None:
     """Main entry point for the script."""
-    first_run = !os.path.isfile(HASH_FILE)
+    first_run = os.path.isfile(HASH_FILE)
     hash_value = None
     if not first_run:
         with open(HASH_FILE, 'r') as hash_file:
@@ -68,7 +68,7 @@ def main() -> None:
             with open(template_script, 'r') as script:
                 # Check if the template script has been modified
                 if hash_value != hashlib.md5(script.read().encode()).hexdigest():
-                    print(' SKIPPING', end='')
+                    print(' SKIPPING')
                     continue
         if not os.path.isfile(template_script):
             with open(TEMPLATE_SCRIPT, 'r') as template:
