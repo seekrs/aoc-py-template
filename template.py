@@ -11,12 +11,12 @@ import collections; import datetime; import itertools; import logging; import ma
 #######
 # Your code goes here!!!! :D
 #######
-def solve_part_one(input: List[str]) -> str:
+def solve_part_one(inputs: List[str]) -> str:
     """Solve part one of the problem."""
     return None
 
 
-def solve_part_two(input: List[str]) -> str:
+def solve_part_two(inputs: List[str]) -> str:
     """Solve part two of the problem."""
     return None
 
