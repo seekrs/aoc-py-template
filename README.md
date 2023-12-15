@@ -10,7 +10,8 @@ you can edit and extend the `template.py` file with utility code and re-run the 
 ok you win heres the funny list i originally put here
 
 - Conveniant Python setup with a single command.
-- Nice logging
+- Nice logging, cool for debugging
+  - use `print` statements all you want, but if you only want your puzzle outputs to show up, the logger only writes on stderr, so you can do something like `py3 main.py input >/dev/null` to remove `print` calls
 - Timing and nice defaults
 - basically i like it
 
