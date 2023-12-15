@@ -11,7 +11,7 @@ import hashlib
 import os
 import sys
 
-PROJECT_DIR = 'projects'
+PROJECT_DIR = 'days'
 TEMPLATE_SCRIPT = 'template.py'
 HASH_FILE = '.last_setup'
 
@@ -48,7 +48,7 @@ def main() -> None:
     os.makedirs(PROJECT_DIR, exist_ok=True)
 
     # Get the list of projects
-    projects = ["day%d" % i for i in range(1, 25 + 1)]
+    projects = [(("day%d" % i) if i > 9 else ("day0%d" %i)) for i in range(1, 25 + 1)]
     max_len = max([len(p) for p in projects])
 
     # Create a directory for each project
