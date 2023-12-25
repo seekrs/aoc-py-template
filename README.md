@@ -1,48 +1,37 @@
-# aoc-toolkit
+# aoc-toolkit v2
 
-Advent Of Code toolkit and helpers &lt;3
+## What's new
 
-## Advantages
+This is a collaborative effort to bring as much boilerplate and utilities as possible to Advent of Code.
 
-I wanted to put a funny list here that would compel no one, but a cool feature is that:  
-you can edit and extend the `template.py` file with utility code and re-run the `setup.sh` script to update all the future days
+This project is currently a Work In Progress, but feel free to take a look! Contributions are very much welcome.
 
-ok you win heres the funny list i originally put here
+## TODO List
 
-- Conveniant Python setup with a single command.
-- Nice logging, cool for debugging
-  - use `print` statements all you want, but if you only want your puzzle outputs to show up, the logger only writes on stderr, so you can do something like `py3 main.py input >/dev/null` to remove `print` calls
-- Timing and nice defaults
-- basically i like it
+**Note**: *this is a non-final list, things may change, this is just a dump of all my current ideas*
 
-## Setup
+Some things that could be interesting to implement:
+- adventofcode.com Automatization
+  - [ ] Login
+  - [ ] Auto input download
+  - [ ] Auto snippets download (?)
+  - [ ] Auto submitting
 
-Here's a one-liner convenient setup:
+- a way to abstract testing based on the provided snippets.
 
-```bash
-git clone https://github.com/27network/aoc-toolkit aoc2023 && cd aoc2023 && rm -rf .git && git init && bash setup.sh && cd projects
-```
+- Improved interface
+  - [ ] CLI Interface
+    - [ ] Setup/config part
+      - [ ] Year picker
+  - [ ] TUI Interface
+  - [ ] GUI Interface?
 
-On multiple lines:
-```bash
-# Clone the repo & cd into it
-git clone https://github.com/27network/aoc-toolkit aoc2023
-cd aoc2023
-
-# Repurpose the repository as your own AOC repo (optional)
-rm -rf .git
-git init
-
-# Run the setup script
-# HINT: You can do that as many times as you want
-# HINT2: You can change the `template.py` file to change the `main.py` file that generates in your projects
-bash setup.sh
-
-# That's it. You're bueno.
-# Go code away!
-```
+- LOTS of utilities
+  - [ ] Library for easy visualization of problems
+  - [ ] Parsing utilities
+  - [ ] Math utilities
+  - [ ] Points, directions, maps, stuff that could be useful in a Maze puzzle
 
 ## License
-does GPLv3 work with those sort of thing? or MIT maybe?
 
-okay fuck it unlicense it all. this code is in the public domain.
+public domain pog
